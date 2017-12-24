@@ -15,17 +15,27 @@ public class App
     			{0.65,0.8, 0.8, 0.9},
     			{1.2, 1.3, 0.5, 1.0}};
 
-    	double[][] weights  = {
-    			{0.1, 0.1, -0.3},
-				{0.1, 0.2, 0.0},
-				{0.0, 1.3, 0.1}};
+    	double[][] w0  = {
+    			{0.1, 0.2, -0.1},
+				{-0.1,0.1, 0.9},
+				{0.1, 0.4, 0.1}
+		};
     	
-        Matrix inputsMatrix = new Matrix(inputs);
-        Matrix weightsMatrix = new Matrix(weights);
+    	double[][] w1  = {
+    			{0.3, 1.1, -0.3},
+				{0.1, 0.2, 0.0},
+				{0.0, 1.3, 0.1}
+		};
+    	
+  
+    		    		
+        Matrix inM = new Matrix(inputs);
+        Matrix w0M = new Matrix(w0);
+        Matrix w1M = new Matrix(w1);
 
-        System.out.println(inputsMatrix.T());
-        System.out.println(weightsMatrix);
+        System.out.println(inM.T());
+        System.out.println(w0M.T());
 
-        System.out.println(inputsMatrix.T().dot(weightsMatrix.T()));
+        System.out.println((inM.T().dot(w0M.T())).dot(w1M.T()));
     }
 }
