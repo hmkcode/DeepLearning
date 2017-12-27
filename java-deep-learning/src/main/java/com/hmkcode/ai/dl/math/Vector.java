@@ -16,11 +16,20 @@ public class Vector {
 		for(int i = 0; i < values.length; i++)
 			productSum += (this.values[i]*vector.values[i]);
 		
-		System.out.println(this+" x "+vector+ " =  "+Helper.round(productSum));
+		//System.out.println(this+" x "+vector+ " =  "+Helper.round(productSum));
 		return Helper.round(productSum);
 		
 	}
 	
+	
+	public double[] getValues() {
+		return values;
+	}
+
+	public void setValues(double[] values) {
+		this.values = values;
+	}
+
 	@Override
 	public String toString() {
 		String output = "";
