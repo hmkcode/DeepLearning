@@ -124,10 +124,10 @@ package com.hmkcode.ai.dl.math;
 		String output = "";
 		
 		for(int r = 0 ; r < this.rows; r++){
-		for(int c = 0 ; c < this.columns; c++)
-		output += this.values[r][c]+", ";
+			for(int c = 0 ; c < this.columns; c++)
+				output += this.values[r][c]+", ";
 		
-		output += "\n";
+			output += "\n";
 		}
 		
 		return output;

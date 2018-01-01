@@ -24,26 +24,24 @@ public class App
 				{0.0, 1.3, 0.1}
 			};
 		
-		
-		
-			Matrix inM = new Matrix(inputs).T();
-			System.out.println(inM);
-
-			Matrix weights_0 = new Matrix(w0).T();
-			System.out.println(weights_0);
-
-			Matrix weights_1 = new Matrix(w1).T();
-			System.out.println(weights_1);			
+			double[][] outputs = {
+				{0.1, 0.0, 0.0, 0.1},
+				{1.0, 1.0, 0.0, 1.0},
+				{0.1, 0.0, 0.1, 0.2}
+			};
 
 			
-			Matrix layer_0 = inM.getRow(0);
-			Matrix layer_1 = layer_0.dot(weights_0);
-			Matrix output = layer_1.dot(weights_1);
+			Network network = new Network();
 			
+			network.setInputs(new Matrix(inputs).T());
+			network.setOutputs(new Matrix(outputs).T());
 			
-			System.out.println(layer_0);
-			System.out.println(layer_1);
-			System.out.println(output);
+			network.addWeightMatrix(new Matrix(w0).T());
+			network.addWeightMatrix(new Matrix(w1).T());
+			
+			network.forward();
+
+			
 	}
 	
 }
