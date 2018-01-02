@@ -5,9 +5,11 @@ import com.hmkcode.ai.dl.utils.Helper;
 public class Vector {
 
 	private double[] values;
+	private int length;
 	
 	public Vector(double[] values){
 		this.values = values;
+		this.length = this.values.length;
 	}
 	
 	public double dot(Vector vector){
@@ -21,6 +23,17 @@ public class Vector {
 		
 	}
 	
+	public Matrix product(Vector vector){
+		
+		double[][] results = new double[this.length][vector.length];
+		
+		for(int r = 0; r < this.length; r++)
+			for(int c = 0 ; c < vector.length; c++)
+				results[r][c] = Helper.round(this.values[r]*vector.values[c]);
+		
+		return new Matrix(results);
+		
+	}
 	
 	public double[] getValues() {
 		return values;

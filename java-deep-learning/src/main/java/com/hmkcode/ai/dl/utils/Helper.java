@@ -2,9 +2,12 @@ package com.hmkcode.ai.dl.utils;
 
 public class Helper {
 
-	
+	public static int DECIMALS = 3;
 	public static double round(double value){
 		
-		return Math.round(value*1000.0)/1000.0;
+		double factor = Math.pow(10.0, DECIMALS);
+		return Math.round(value*factor)/factor;
 	}
+	
+
 }

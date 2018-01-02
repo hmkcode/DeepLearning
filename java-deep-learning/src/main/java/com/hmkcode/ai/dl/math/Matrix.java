@@ -1,6 +1,8 @@
-package com.hmkcode.ai.dl.math;	
-	
-	public class Matrix {
+package com.hmkcode.ai.dl.math;
+
+import com.hmkcode.ai.dl.utils.Helper;
+
+public class Matrix {
 	
 	public static int ROW = 0;
 	public static int COLUMN = 1;
@@ -87,11 +89,36 @@ package com.hmkcode.ai.dl.math;
 		double[][] results = new double[this.getRows()][matrix.getColumns()];
 		
 		for(int r = 0; r < this.getRows(); r++)
-		for(int c = 0 ; c < matrix.columns; c++)
-		results[r][c] = this.getVector(r, ROW).dot(matrix.getVector(c, COLUMN));
+			for(int c = 0 ; c < matrix.columns; c++)
+				results[r][c] = this.getVector(r, ROW).dot(matrix.getVector(c, COLUMN));
 		
 		return new Matrix(results);
 	}
+	
+	public Matrix dot(double value){
+		
+		double[][] results = new double[this.getRows()][this.getColumns()];
+		
+		for(int r = 0; r < this.getRows(); r++)
+			for(int c = 0 ; c < this.columns; c++)
+				results[r][c] = Helper.round(this.getValues()[r][c]*value);
+		
+		return new Matrix(results);
+	}
+	
+	public Matrix subtract(Matrix matrix){
+		
+		double[][] results = new double[this.getRows()][this.getColumns()];
+		
+		for(int r = 0; r < this.getRows(); r++)
+			for(int c = 0 ; c < this.getColumns(); c++)
+				results[r][c] = Helper.round(this.getValues()[r][c] - matrix.getValues()[r][c]);
+		
+		
+		return new Matrix(results);
+	}
+	
+	
 	// =============================
 	
 	public double[][] getValues() {
@@ -121,7 +148,7 @@ package com.hmkcode.ai.dl.math;
 	@Override
 	public String toString() {
 	
-		String output = "";
+		String output = rows+"x"+columns+"\n";
 		
 		for(int r = 0 ; r < this.rows; r++){
 			for(int c = 0 ; c < this.columns; c++)
