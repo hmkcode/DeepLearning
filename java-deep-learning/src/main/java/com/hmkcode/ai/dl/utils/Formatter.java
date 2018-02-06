@@ -1,6 +1,6 @@
 package com.hmkcode.ai.dl.utils;
 
-public class Helper {
+public class Formatter {
 
 	public static int DECIMALS = 3;
 	public static double round(double value){

@@ -12,9 +12,7 @@ public class Activation {
 			for(int c = 0 ; c < matrix.getColumns(); c++)
 				results[r][c] = relu(matrix.getValues()[r][c]);
 		
-		
 		return new Matrix(results);
-		
 	}
 	
 	public static double relu(double value){

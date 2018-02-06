@@ -1,6 +1,6 @@
 package com.hmkcode.ai.dl.math;
 
-import com.hmkcode.ai.dl.utils.Helper;
+import com.hmkcode.ai.dl.utils.Formatter;
 
 public class Vector {
 
@@ -19,7 +19,7 @@ public class Vector {
 			productSum += (this.values[i]*vector.values[i]);
 		
 		//System.out.println(this+" x "+vector+ " =  "+Helper.round(productSum));
-		return Helper.round(productSum);
+		return Formatter.round(productSum);
 		
 	}
 	
@@ -29,7 +29,7 @@ public class Vector {
 		
 		for(int r = 0; r < this.length; r++)
 			for(int c = 0 ; c < vector.length; c++)
-				results[r][c] = Helper.round(this.values[r]*vector.values[c]);
+				results[r][c] = Formatter.round(this.values[r]*vector.values[c]);
 		
 		return new Matrix(results);
 		

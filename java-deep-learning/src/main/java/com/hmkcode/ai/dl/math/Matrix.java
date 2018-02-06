@@ -1,6 +1,6 @@
 package com.hmkcode.ai.dl.math;
 
-import com.hmkcode.ai.dl.utils.Helper;
+import com.hmkcode.ai.dl.utils.Formatter;
 
 public class Matrix {
 	
@@ -101,7 +101,7 @@ public class Matrix {
 		
 		for(int r = 0; r < this.getRows(); r++)
 			for(int c = 0 ; c < this.columns; c++)
-				results[r][c] = Helper.round(this.getValues()[r][c]*value);
+				results[r][c] = Formatter.round(this.getValues()[r][c]*value);
 		
 		return new Matrix(results);
 	}
@@ -112,7 +112,7 @@ public class Matrix {
 		
 		for(int r = 0; r < this.getRows(); r++)
 			for(int c = 0 ; c < this.getColumns(); c++)
-				results[r][c] = Helper.round(this.getValues()[r][c] - matrix.getValues()[r][c]);
+				results[r][c] = Formatter.round(this.getValues()[r][c] - matrix.getValues()[r][c]);
 		
 		
 		return new Matrix(results);

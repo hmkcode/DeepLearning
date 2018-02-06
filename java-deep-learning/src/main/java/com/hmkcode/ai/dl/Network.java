@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.hmkcode.ai.dl.math.Matrix;
-import com.hmkcode.ai.dl.utils.Helper;
+import com.hmkcode.ai.dl.utils.Formatter;
 
 public class Network {
 
@@ -17,35 +17,38 @@ public class Network {
 	
 	public void forward(int s){
 		
-
 		Matrix input = inputs.getRow(s);
 		Matrix predict = null;
 		Matrix output = outputs.getRow(s);
-		
-		input = inputs.getRow(s);
+		List<Matrix> layers = new LinkedList<Matrix>();
+		List<Matrix> deltas = new LinkedList<Matrix>();
+
 		predict = input;
-		for(int w = 0 ; w < weights.size(); w++)
+		System.out.println("weights: "+weights);
+		for(int w = 0 ; w < weights.size(); w++){
+			layers.add(predict);
 			predict = predict.dot(weights.get(w));
+		}
 		
 		Matrix delta = predict.subtract(output);
 		
-		Matrix wDelta = input.getVector(0, Matrix.ROW).product(delta.getVector(0, Matrix.ROW));
+		for(int w = weights.size()-1 ; w >= 0; w--){
+			deltas.add(0,delta);
+			delta = delta.dot(weights.get(w).T());
+		}
 		
-
-		System.out.println("Network");
-		System.out.println("-------------");
-		System.out.println("inputs: "+input);
-		System.out.println("predicts: "+predict);
-		System.out.println("deltas: "+delta);
-		System.out.println("wDelta: "+wDelta);
-		System.out.println("alpha x wDelta: "+wDelta.dot(0.01));
-		System.out.println("weights: "+weights.get(0).T());
-		Helper.DECIMALS = 1;
-		weights.set(0, (weights.get(0).T().subtract(wDelta.dot(0.01))).T());
-
-		System.out.println("updated weights: "+weights.get(0).T());
-
-
+		
+		for(int i = 0 ; i < layers.size(); i++){
+			Matrix alphaxinputxdelta = (layers.get(i).T().dot(deltas.get(i))).dot(0.01);
+			weights.set(i, weights.get(i).subtract(alphaxinputxdelta));
+		}
+		System.out.println("inputs: "+layers);
+		System.out.println("deltas: "+deltas);
+		System.out.println("weights: "+weights);
+	}
+	
+	public void Backpropagate(){
+		
 	}
 
 
